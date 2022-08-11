@@ -1,4 +1,4 @@
-package com.fabo.portfolio.service;
+package com.fabo.portfolio.service.profileService;
 
 import com.fabo.portfolio.model.Profile;
 
