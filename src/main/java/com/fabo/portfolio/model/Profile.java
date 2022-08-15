@@ -18,11 +18,22 @@ public class Profile {
 
     private String label;
 
+    private String github;
+
+    private String email;
+
+    private String linkedin;
+
+    private String phoneNumber;
+
     private String profilePictureUrl;
 
     private String profilePictureBgUrl;
 
-    private String profileBgUrl;
+    private String backgroundUrl;
+
+    private String cite;
+
 
 
 }

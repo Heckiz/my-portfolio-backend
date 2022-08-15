@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController @RequestMapping("/api")
+@RestController
 public class ProfileController {
 
     @Autowired
@@ -16,6 +16,11 @@ public class ProfileController {
     @GetMapping("/profiles")
     private List<Profile> getAllProfiles(){
         return profileServ.getAllProfiles();
+    }
+
+    @GetMapping("/profiles/{id}")
+    private Profile getProfile(@PathVariable Long id){
+        return profileServ.getProfile(id);
     }
 
     @PostMapping("/profiles")
@@ -30,8 +35,9 @@ public class ProfileController {
          return "Profile deleted successfully";
     }
 
-    @GetMapping("/profiles/{id}")
-    private Profile getProfile(@PathVariable Long id){
-        return profileServ.getProfile(id);
+    @PutMapping ("/profiles/{id}")
+    private String updateProfile(@RequestBody Profile profile){
+        profileServ.saveProfile(profile);
+        return "Profile updated successfully";
     }
 }
