@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController @RequestMapping("/api")
+@RestController
 public class StudyController {
 
     @Autowired
@@ -16,6 +16,10 @@ public class StudyController {
     @GetMapping("/studies")
     private List<Study> getAllStudies(){
         return studyService.getAllStudies();
+    }
+    @GetMapping("/studies/{id}")
+    private Study getStudy(@PathVariable Long id){
+        return studyService.getStudy(id);
     }
 
     @PostMapping("/studies")
@@ -30,9 +34,10 @@ public class StudyController {
         return "Study deleted successfully";
     }
 
-    @GetMapping("/studies/{id}")
-    private Study getStudy(@PathVariable Long id){
-        return studyService.getStudy(id);
+    @PutMapping("/studies")
+    private String updateStudy(@RequestBody Study study){
+        studyService.saveStudy(study);
+        return "Study updated successfully";
     }
 
 }

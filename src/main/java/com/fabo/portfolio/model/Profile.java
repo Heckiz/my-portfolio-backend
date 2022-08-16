@@ -34,6 +34,4 @@ public class Profile {
 
     private String cite;
 
-
-
 }

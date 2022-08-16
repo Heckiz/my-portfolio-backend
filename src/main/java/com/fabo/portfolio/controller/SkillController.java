@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class SkillController {
     @Autowired
     public SkillService skillService;
@@ -16,6 +15,10 @@ public class SkillController {
     @GetMapping("/skills")
     private List<Skill> getAllSkills(){
         return skillService.getAllSkills();
+    }
+    @GetMapping("/skills/{id}")
+    private Skill getSkill(@PathVariable Long id){
+        return skillService.getSkill(id);
     }
 
     @PostMapping("/skills")
@@ -30,9 +33,9 @@ public class SkillController {
         return "Skill deleted successfully";
     }
 
-    @GetMapping("/skills/{id}")
-    private Skill getSkill(@PathVariable Long id){
-        return skillService.getSkill(id);
+    @PutMapping("/skills/{id}")
+    private String updateSkill(@RequestBody Skill skill){
+        skillService.saveSkill(skill);
+        return "Skill updated successfully";
     }
-
 }

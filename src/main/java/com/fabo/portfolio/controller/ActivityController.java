@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class ActivityController {
 
     @Autowired
@@ -17,6 +16,11 @@ public class ActivityController {
     @GetMapping("/activities")
     private List<Activity> getAllActivities(){
         return activityService.getAllActivities();
+    }
+
+    @GetMapping("/activities/{id}")
+    private Activity getActivity(@PathVariable Long id){
+        return activityService.getActivity(id);
     }
 
     @PostMapping("/activities")
@@ -31,9 +35,9 @@ public class ActivityController {
         return "Activity deleted successfully";
     }
 
-    @GetMapping("/activities/{id}")
-    private Activity getActivity(@PathVariable Long id){
-        return activityService.getActivity(id);
+    @PutMapping("/activities/{id}")
+    private String updateActivity(@RequestBody Activity activity){
+        activityService.saveActivity(activity);
+        return "Activity updated successfully";
     }
-
 }
